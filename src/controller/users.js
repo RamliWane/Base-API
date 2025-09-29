@@ -11,18 +11,29 @@ const getAllUsers = async (req, res) => {
         });
     } catch (error) {
         res.status(500).json({
-            message: 'Get all users failed',
+            message: 'Server error',
             ServerMessage: error
         });
     }
 } 
 
-const createUser = (req, res) => {
-    console.log(req.body);
-    res.json({
-        message: 'Create All user success',
-        data : req.body
-    });
+const createUser = async (req, res) => {
+    const {body} = req;
+    try {
+
+        await UserModel.createNewUser(req.body);
+
+        res.json({
+            message: 'Create All user success',
+            data : body
+        });
+
+    } catch (error) {
+        res.status(500).json({
+            message: 'Server error',
+            ServerMessage: error
+        });
+    }
 }
 
 const UpdateUser = (req, res) => {
