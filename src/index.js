@@ -1,16 +1,10 @@
     const express = require('express');
     
-    const mysql = require('mysql2');
-
+    
     const UserRoutes = require('./routes/users');
-
+    
     const LogsRequestMiddleware = require('./middleware/logs');
-
-    const dbPool = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
-    database: 'express_mysql',
-    });
+    
 
     const app = express(); 
 
