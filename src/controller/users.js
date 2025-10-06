@@ -19,11 +19,19 @@ const getAllUsers = async (req, res) => {
 
 const createUser = async (req, res) => {
     const {body} = req;
+
+    if(!body.name || !body.email || !body.address) {
+        return res.status(400).json({
+            message: 'Upss, Salah Mengirim data? Pastikan semua data terisi dengan benar!',
+            data: null
+        });
+    }
+
     try {
 
         await UserModel.createNewUser(req.body);
 
-        res.json({
+        res.status(201).json({
             message: 'Create All user success',
             data : body
         });
